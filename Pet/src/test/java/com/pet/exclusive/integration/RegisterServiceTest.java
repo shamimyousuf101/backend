@@ -12,12 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = DEFINED_PORT)
-public class ExclusionServiceTest {
+public class RegisterServiceTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -31,7 +30,7 @@ public class ExclusionServiceTest {
         //arrange
 
         //act
-        ResponseEntity<String> responseEntity = restTemplate.getForEntity(createUrlWithPort("/exclusive"), String.class);
+        ResponseEntity<String> responseEntity = restTemplate.postForEntity(createUrlWithPort("/register"), String.class, null);
 
         //assert
         Assertions.assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
